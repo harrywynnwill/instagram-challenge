@@ -1,0 +1,5 @@
+<%= form_for [ @picture, @comment ] do |rev| %>
+  <%= rev.label :comment %>
+  <%= rev.text_area :comment %>
+  <%= rev.submit 'Submit Comment' %>
+<%end%>

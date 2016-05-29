@@ -5,6 +5,10 @@
   <h4><%= pic.location %></h4>
   <h4><%= link_to "Edit #{pic.caption}", edit_picture_path(pic) %></h4>
   <h4><%= link_to "Delete #{pic.caption}", picture_path(pic), method: :delete %></h4>
+  <h4><%= link_to "Leave comment #{pic.caption}", new_picture_comment_path(pic)%></h4>
+  <% pic.comments.each do |com| %>
+    <p><%= link_to com.comment %></p>
+  <% end %>
   <% end %>
 <% else %>
   <p> No pictures yet </p>
@@ -14,4 +18,4 @@
 
 
 
-<a href='/pictures/new'> Post a picture</a>
+<h5><a href='/pictures/new'> Post a picture</a></h5>
