@@ -1,11 +1,17 @@
 <% if @pictures.any? %>
   <% @pictures.each do |pic| %>
   <h4><%= link_to pic.caption, picture_path(pic) %></h4>
-  <h4><%= image_tag pic.image.url(:medium) %></h4>
-  <h4><%= link_to pic.location, picture_path(pic) %></h4>
+  <h4><%= image_tag pic.image.url(:thumb) %></h4>
+  <h4><%= pic.location %></h4>
+  <h4><%= link_to "Edit #{pic.caption}", edit_picture_path(pic) %></h4>
+  <h4><%= link_to "Delete #{pic.caption}", picture_path(pic), method: :delete %></h4>
   <% end %>
 <% else %>
   <p> No pictures yet </p>
 <% end %>
+
+
+
+
 
 <a href='/pictures/new'> Post a picture</a>
