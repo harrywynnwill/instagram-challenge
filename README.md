@@ -25,7 +25,7 @@ So that I can give witty captions and leave #hashtags on pictures
 I want to comment on pictures
 
 Should haves
-------------
+---------
 As a user
 So that I can see other users pictures
 I want to follow profiles
