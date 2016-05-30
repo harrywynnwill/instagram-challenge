@@ -18,25 +18,19 @@ end
   context 'picture has been posted' do
     before do
       visit '/pictures'
-      click_link 'Post a picture'
-      fill_in 'Caption', with: '#blessed'
-      fill_in 'Location', with: 'London'
-      page.attach_file('picture_image', './public/insta.jpg')
-      click_button 'Create Picture'
+      post_picture_one
+      post_picture_two
     end
       scenario 'picture is posted' do
         expect(page).to have_content '#blessed'
         expect(page).to_not have_content 'No pictures yet'
         expect(page).to have_css("img[src*='insta.jpg']")
       end
-
-      let!(:pic) {Picture.create(caption: "#moments", location: "Japan", image: File.open("#{Rails.root}/public/insta2.jpg" ))}
       scenario 'clicking on a pictures caption you see the full size image' do
         visit '/pictures'
         click_link '#moments'
         expect(page).to have_css("img[src*='insta2.jpg']")
         expect(page).to_not have_css("img[src*='insta.jpg']")
-        expect(current_path).to eq "/pictures/#{pic.id}"
       end
 
       scenario 'a picture can be edited' do
