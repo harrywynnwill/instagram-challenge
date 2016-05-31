@@ -1,8 +1,14 @@
 class PicturesController < ApplicationController
+
   before_action :authenticate_user!, :except => [:index, :show]
 
   def index
     @pictures = Picture.all
+  end
+
+  def show
+    @picture = Picture.find(params[:id])
+    @comment = Comment.new
   end
 
   def new
@@ -10,11 +16,13 @@ class PicturesController < ApplicationController
   end
 
   def create
-    @picture = Picture.create(picture_params)
+    @picture = Picture.create_with_user(picture_params, current_user)
+    if @picture.save
     redirect_to '/pictures'
-  end
-  def show
-    @picture = Picture.find(params[:id])
+  else
+    flash[:notice] = "Upload failed"
+    render 'new'
+    end
   end
   def edit
     @picture = Picture.find(params[:id])

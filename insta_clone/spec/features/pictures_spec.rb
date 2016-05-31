@@ -1,12 +1,7 @@
 require 'rails_helper'
 feature 'pictures' do
   before(:each) do
-   visit '/'
-   click_link 'Sign up'
-   fill_in 'Email', with: 'test@test.com'
-   fill_in 'Password', with: 'testtest'
-   fill_in 'Password confirmation', with: 'testtest'
-   click_button 'Sign up'
+  user_sign_up
 end
   context 'no pictures have been posted yet' do
     scenario 'should display a prompt to post a picture' do

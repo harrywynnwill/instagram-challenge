@@ -1,3 +1,16 @@
-<%= image_tag @picture.image.url(:medium) %>
-<br>
+<%= image_tag @picture.image.url(:medium) %><br>
+<h5> <%= @picture.likes.count %> </h5>
+<h4><%= link_to 'Like', picture_likes_path(@picture),  method: :post %></h4>
+<h4>Comments: </h4>
+  <% @picture.comments.each do |comment| %>
+  <%= comment.user.email %>
+  <%= comment.comment %> <br>
+  <% end %>
+  <br>
+<%= form_for [ @picture, @comment ] do |rev| %>
+  <%= rev.label :comment %>
+  <%= rev.text_area :comment %>
+  <%= rev.submit 'Submit Comment' %>
+<%end%>
+
 <a href='/pictures'> feed </a>
