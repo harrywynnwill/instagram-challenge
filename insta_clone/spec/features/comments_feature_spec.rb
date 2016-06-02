@@ -6,7 +6,7 @@ feature 'Comments' do
   end
   context 'can be be added to pictures' do
     scenario 'posting a comment on a picture' do
-    click_link 'Leave comment'
+    click_link '#peoplearepeople'
     fill_in 'Comment', with: 'Looks like a cheap hotel X'
     click_button 'Submit Comment'
     click_link '#peoplearepeople'

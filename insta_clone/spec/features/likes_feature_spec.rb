@@ -6,10 +6,16 @@ feature 'Likes' do
   end
 
   context 'image has no likes' do
-    scenario 'can like a picture' do
+    xscenario 'can like a picture' do
       find('.image-link').click
       click_link 'Like'
       expect(page).to have_content '1 like'
+    end
+    scenario 'user can like and unlike an image' do
+      click_link 'Like'
+      expect(page).to have_content '1'
+      click_link 'Unlike'
+      expect(page).to have_content '0'
     end
   end
 end

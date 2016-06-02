@@ -1,5 +1,5 @@
 class Like < ActiveRecord::Base
-  belongs_to :picture
+  belongs_to :picture, dependent: :destroy
   belongs_to :user
 
   def set_user!(user)

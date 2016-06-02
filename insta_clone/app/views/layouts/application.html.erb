@@ -1,20 +1,32 @@
 <!DOCTYPE html>
 <html>
 <head>
+
   <title>InstaClone</title>
+  <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
+<div class="page-header"><h4>Instassism</h4></div>
+<nav>
+  <ul class="nav navbar-nav navbar-right">
+    <li><a href="#">Home</a></li>
+    <li><a href="#">Help</a></li>
+    <li><a href="#">Log in</a></li>
+  </ul>
+</nav>
 <body>
   <% if user_signed_in? %>
+  <i class="fa fa-user" aria-hidden="true"></i> <%= current_user.email %>
   <%= link_to "Sign out", destroy_user_session_path, method: :delete %>
   <%else%>
   <%= link_to "Sign in", new_user_session_path %>
   <%= link_to "Sign up", new_user_registration_path %>
   <% end %>
-<p class="notice"><%= notice %></p>
-<p class="alert"><%= alert %></p>
+<p class="bg-primary"><%= notice %></p>
+<p class="bg-warning"><%= alert %></p>
 <%= yield %>
 <div
   class="fb-like"

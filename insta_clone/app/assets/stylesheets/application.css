@@ -13,3 +13,15 @@
  *= require_tree .
  *= require_self
  */
+ /*
+  *= require font-awesome
+  */
+body{
+
+  background-color: #F4FFEA;
+}
+.col-xs-6 {
+
+
+  background-color: white;
+}

@@ -30,20 +30,35 @@ class PicturesController < ApplicationController
   end
 
   def update
-    @picture = Picture.find(params[:id])
-    @picture.update(picture_params)
-    redirect_to '/pictures'
+    if check_user?
+      @picture = Picture.find(params[:id])
+      @picture.update(picture_params)
+      redirect_to '/pictures'
+    else
+      flash[:notice] = "Not your picture to edit.."
+      redirect_to '/pictures'
+    end
   end
+
   def destroy
     @picture = Picture.find(params[:id])
-    @picture.destroy
-    flash[:notice] = "#{@picture.caption} deleted successfully"
-    redirect_to '/pictures'
+    if check_user?
+      @picture.destroy
+      flash[:notice] = "#{@picture.caption} deleted successfully"
+      redirect_to '/pictures'
+    else
+      flash[:notice] = "Not your picture to delete..."
+      redirect_to '/pictures'
+    end
   end
 
 
   def picture_params
     params.require(:picture).permit(:caption, :location, :image)
+  end
+  def check_user?
+    current_user === @picture.user
+
   end
 
 end
