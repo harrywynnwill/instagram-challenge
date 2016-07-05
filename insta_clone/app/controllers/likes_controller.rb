@@ -14,12 +14,12 @@ if @picture.save
   end
 
   end
-  def delete
-    byebug
-    @picture = Picture.find(params[:picture_id])
-    @like = @picture.likes.last
-    byebug
-    @like.destroy
-    redirect_to '/pictures'
-  end
+  # def delete
+  #   byebug
+  #   @picture = Picture.find(params[:picture_id])
+  #   @like = @picture.likes.last
+  #   byebug
+  #   @like.destroy
+  #   redirect_to '/pictures'
+  # end
 end

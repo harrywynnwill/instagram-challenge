@@ -16,3 +16,6 @@
 /config/application.yml
 
 /public/system/pictures/images
+
+
+/config/secrets.yml

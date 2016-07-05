@@ -6,7 +6,14 @@ class Picture < ActiveRecord::Base
            dependent: :destroy
   belongs_to :user
 
-  has_attached_file :image, :styles => { :large => "500x500>", :medium => "300x300>", :thumb => "100x100>" }, :default_url => "/images/:style/missing.png"
+  has_attached_file :image,
+  styles: { thumb: '300x300>' },
+  storage: :s3,
+  s3_credentials: {
+    bucket: 'instassism',
+    access_key_id: Rails.application.secrets.s3_access_key,
+    secret_access_key: Rails.application.secrets.s3_secret_key
+  }
   validates_attachment_content_type :image, :content_type => /\Aimage\/.*\Z/
   validates_attachment_presence :image
 end
