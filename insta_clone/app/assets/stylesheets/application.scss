@@ -16,12 +16,8 @@
  /*
   *= require font-awesome
   */
-body{
+@import "materialize";
 
-  background-color: #F4FFEA;
-}
-.col-xs-6 {
-
-
-  background-color: white;
-}
+.nav-wrapper {
+   @extend .blue-grey, .darken-4;
+ }

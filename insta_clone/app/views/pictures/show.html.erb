@@ -1,22 +1,26 @@
 
-<div class="picture">
-<%= image_tag @picture.image.url(:large) %><br>
-</div>
-<div class="likes">
-<h5> <%= @picture.likes.count %> </h5>
-<h4> <%= link_to 'Like', picture_likes_path(@picture),  method: :post %></h4>
-</div>
-<div class="comments">
-<h4>Comments: </h4>
-  <% @picture.comments.each do |comment| %>
-  <%= comment.user.email %>
-  <%= comment.comment %> <br>
-  <% end %>
-  <br>
-<%= form_for [ @picture, @comment ] do |rev| %>
-  <%= rev.label :comment %>
-  <%= rev.text_area :comment %>
-  <%= rev.submit 'Submit Comment', class: "btn btn-lg btn-primary" %>
+
+<div class="row">
+  <div class="col s12 m7">
+    <div class="card">
+      <div class="card-image">
+      <%= image_tag @picture.image.url(:thumb) %><br>
+        <h5>Comments: </h5>
+      <% @picture.comments.each do |comment| %>
+
+       <div class="card-content">
+      <%= comment.user.email %>
+      <%= comment.comment %> <br>
+ </div>
+
+      <% end %>
+
+<%= form_for [ @picture, @comment ] do |comment| %>
+  <%= comment.label :comment %>
+  <%= comment.text_area :comment %>
+  <%= comment.submit 'Submit Comment', class: "btn btn-lg btn-primary" %>
 <%end%>
 </div>
-<h4><a href='/pictures'> feed </a></h4>
+</div>
+</div>
+</div>

@@ -2,24 +2,49 @@
 <html>
 <head>
 
-  <title>InstaClone</title>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+  <title>Narcissism</title>
+
+
+
+
+
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
-</head>
-<div class="page-header"><h4>Instassism</h4></div>
-<nav>
 
+</head>
+
+
+<nav>
+  <div class="nav-wrapper">
+
+    <a href="/" class="brand-logo left">Instassism</a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <% if user_signed_in? %>
+
+        <i class="fa fa-user" aria-hidden="true"></i> <%= current_user.email %>
+        <%= link_to "Sign out", destroy_user_session_path, method: :delete %>
+        <%else%>
+        <%= link_to "Sign in", new_user_session_path %>
+        <%= link_to "Sign up", new_user_registration_path %>
+        <% end %>
+
+
+      <li><a href="/pictures/new"> Post a picture</a></li>
+
+    </ul>
+  </div>
 </nav>
+
+
+
+
+
+
+
+
 <body>
-  <% if user_signed_in? %>
-  <i class="fa fa-user" aria-hidden="true"></i> <%= current_user.email %>
-  <%= link_to "Sign out", destroy_user_session_path, method: :delete %>
-  <%else%>
-  <%= link_to "Sign in", new_user_session_path %>
-  <%= link_to "Sign up", new_user_registration_path %>
-  <% end %>
+
 <p class="bg-primary"><%= notice %></p>
 <p class="bg-warning"><%= alert %></p>
 <%= yield %>
